@@ -15,6 +15,8 @@
   })
 
   cw1.addEventListener("click", async function () {
+    answer.textContent = "Loading...";
+    
     const posts = await fetch('https://jsonplaceholder.typicode.com/posts').then(res => res.json());
     const list = posts.map(post => {
       const li = document.createElement('li');
