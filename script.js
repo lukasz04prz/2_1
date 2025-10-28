@@ -15,16 +15,11 @@
   })
 
   cw1.addEventListener("click", async function () {
-        answer.textContent = "Loading...";
-        const post = await fetch('https://jsonplaceholder.typicode.com/posts/1').then(res => res.json());
-        const title = document.createElement('h3');
-        const body = document.createElement('span');
-        title.textContent = post.title;
-        body.textContent = post.body;
+    answer.textContent = "Processing..."
 
-        answer.innerHTML = "";
-        answer.appendChild(title);
-        answer.appendChild(body);
+    const post = await (await fetch('https://jsonplaceholder.typicode.com/posts', { headers: { "Content-Type": "application/json" },   method: "POST", body: JSON.stringify({ title: "...", body: "...", userId: 1 }) })).json();
+
+    answer.innerHTML = `Dodano nowy post o ID = ${post.id}`;
       })
 
   cw2.addEventListener("click", function () {
