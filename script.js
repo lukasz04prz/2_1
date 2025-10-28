@@ -15,30 +15,17 @@
   })
 
   cw1.addEventListener("click", async function () {
-    answer.textContent = "Loading...";
-    
-    const posts = await fetch('https://jsonplaceholder.typicode.com/posts').then(res => res.json());
-    const list = posts.map(post => {
-      const li = document.createElement('li');
+        answer.textContent = "Loading...";
+        const post = await fetch('https://jsonplaceholder.typicode.com/posts/1').then(res => res.json());
+        const title = document.createElement('h3');
+        const body = document.createElement('span');
+        title.textContent = post.title;
+        body.textContent = post.body;
 
-      const title = document.createElement('h3');
-      const body = document.createElement('span');
-      title.textContent = post.title;
-      body.textContent = post.body;
-
-      li.appendChild(title);
-      li.appendChild(body);
-      return li;
-    });
-
-    const ul = document.createElement('ul');
-    list.forEach(li => {
-      ul.appendChild(li);
-    });
-
-    answer.innerHTML = "";
-    answer.appendChild(ul);
-  })
+        answer.innerHTML = "";
+        answer.appendChild(title);
+        answer.appendChild(body);
+      })
 
   cw2.addEventListener("click", function () {
     //TODO
