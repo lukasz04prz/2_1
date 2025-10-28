@@ -14,8 +14,28 @@
       })
   })
 
-  cw1.addEventListener("click", function () {
-    //TODO
+  cw1.addEventListener("click", async function () {
+    const posts = await fetch('https://jsonplaceholder.typicode.com/posts').then(res => res.json());
+    const list = posts.map(post => {
+      const li = document.createElement('li');
+
+      const title = document.createElement('h3');
+      const body = document.createElement('span');
+      title.textContent = post.title;
+      body.textContent = post.body;
+
+      li.appendChild(title);
+      li.appendChild(body);
+      return li;
+    });
+
+    const ul = document.createElement('ul');
+    list.forEach(li => {
+      ul.appendChild(li);
+    });
+
+    answer.innerHTML = "";
+    answer.appendChild(ul);
   })
 
   cw2.addEventListener("click", function () {
